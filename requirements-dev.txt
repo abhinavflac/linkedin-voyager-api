@@ -1,0 +1,6 @@
+# Dev-only dependencies — required ONLY for the one-time setup scripts.
+#   scripts/get_cookies.py    -> selenium (capture LinkedIn cookies)
+#   scripts/get_gmail_token.py -> google-auth-oauthlib (get Gmail API refresh token)
+# Not needed for the main app, CLI, or Render deployment.
+selenium>=4.15
+google-auth-oauthlib>=1.2.0

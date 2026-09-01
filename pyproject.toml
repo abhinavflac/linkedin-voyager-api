@@ -1,0 +1,9 @@
+[project]
+name = "linkedin-voyager-api"
+version = "1.0.0"
+description = "Browser-free LinkedIn job alerts via the private Voyager API"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

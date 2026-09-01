@@ -1,0 +1,44 @@
+# Render Blueprint — defines the web service for one-click deploy.
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: linkedin-voyager-api
+    runtime: python
+    plan: free
+    healthCheckPath: /health
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      # --- search tuning (safe to commit) ---
+      - key: KEYWORDS
+        value: '["Data Analyst","Data Analytics","Data Scientist","Business Analyst"]'
+      - key: GEO_ID
+        value: "102713980"
+      - key: TIME_POSTED_RANGE
+        value: "r86400"
+      - key: SORT_BY
+        value: "DD"
+      - key: EXPERIENCE_LEVELS
+        value: '["1","2"]'
+      - key: TITLE_KEYWORDS
+        value: '["analyst","analytics","data science","data scientist"]'
+      - key: POLL_INTERVAL_SECONDS
+        value: "300"
+      - key: DEDUP_RETENTION_DAYS
+        value: "7"
+      - key: BLACKLISTED_COMPANIES
+        value: '["Skillzenloop","Zenithbyte","Wake Up Whistle","F6IT Fintech & IT Solutions","internmo","Dexter''s Tech","ArGo Intern"]'
+      # --- secrets (Render prompts you to fill these during deploy) ---
+      - key: COOKIES_JSON
+        sync: false
+      - key: SENDER_EMAIL
+        sync: false
+      - key: RECEIVER_EMAIL
+        sync: false
+      - key: GMAIL_CLIENT_ID
+        sync: false
+      - key: GMAIL_CLIENT_SECRET
+        sync: false
+      - key: GMAIL_REFRESH_TOKEN
+        sync: false
